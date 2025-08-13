@@ -1,0 +1,23 @@
+nav {
+    background-color: rgb(188, 68, 231);
+}
+nav li {
+    display: inline-block;
+    padding: 10px;
+}
+nav li a {
+    color: white;
+    text-decoration: none;
+}
+nav li a:hover {
+    text-decoration: underline;
+}
+nav li a:active {
+    color: rgb(255, 255, 0);
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
