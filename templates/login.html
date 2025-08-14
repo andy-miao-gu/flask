@@ -1,4 +1,26 @@
 {% extends "base.html" %}
+{% block title %}Login - Todo App{% endblock %}
 {% block content %}
-login page
+
+<h2>Welcome Back!</h2>
+<p style="color: #666; margin-bottom: 2rem;">Please sign in to access your todo list.</p>
+
+<form action="/login" method="POST" class="auth-form">
+    <div class="form-group">
+        <label for="username" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #7c2ae8;">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required style="width: 100%; box-sizing: border-box;">
+    </div>
+    
+    <div class="form-group">
+        <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #7c2ae8;">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required style="width: 100%; box-sizing: border-box;">
+    </div>
+    
+    <button type="submit" style="width: 100%; margin-top: 1rem; padding: 0.75rem;">🔐 Sign In</button>
+</form>
+
+<div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e3e3e3;">
+    <p style="color: #666;">Don't have an account? <a href="/register" style="color: #7c2ae8; text-decoration: none; font-weight: 500;">Create one here</a></p>
+</div>
+
 {% endblock %}

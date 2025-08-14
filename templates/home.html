@@ -1,34 +1,41 @@
 {% extends "base.html" %}
+{% block title %}Home - Todo App{% endblock %}
 {% block content %}
 
+<h2>Your Todo List</h2>
+
 {% if todos %}
-    <h2>Your Todos</h2>
-    <ul>
+    <ul class="todo-list">
         {% for todo in todos %}
-            <li>
-                {{ todo.task }} 
-                {% if not todo.completed %}
-                    <form action="/complete_todo/{{ todo.id }}" method="POST" style="display:inline;">
-                        <button type="submit">Complete</button>
+            <li class="{% if todo.completed %}completed{% endif %}">
+                <span class="todo-text">{{ todo.task }}</span>
+                <div class="todo-actions">
+                    {% if not todo.completed %}
+                        <form action="/complete_todo/{{ todo.id }}" method="POST" style="display:inline;">
+                            <button type="submit">✓ Complete</button>
+                        </form>
+                    {% else %}
+                        <span class="completed-badge">✓ Completed</span>
+                    {% endif %}
+                    <form action="/delete_todo/{{ todo.id }}" method="POST" style="display:inline;">
+                        <button type="submit" style="background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);">🗑 Delete</button>
                     </form>
-                {% else %}
-                    <span>Completed</span>
-                {% endif %}
-                <form action="/delete_todo/{{ todo.id }}" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
+                </div>
             </li>
         {% endfor %}
     </ul>
 {% else %}
-    <p>No todos found.</p>
+    <div style="text-align: center; padding: 2rem; color: #7c2ae8; font-size: 1.2rem;">
+        <p>🎉 No todos found! Time to add your first task.</p>
+    </div>
 {% endif %}
 
-
-
-<form action="/add_todo" method="POST">
-    <input type="text" name="task" placeholder="Add a new todo" required>
-    <button type="submit">Add Todo</button>
-</form>
+<div class="add-todo-section">
+    <h3 style="color: #7c2ae8; margin-bottom: 1rem;">Add New Todo</h3>
+    <form action="/add_todo" method="POST" style="display: flex; gap: 0.5rem; align-items: center;">
+        <input type="text" name="task" placeholder="What needs to be done?" required style="flex: 1;">
+        <button type="submit">+ Add Todo</button>
+    </form>
+</div>
 
 {% endblock %}
