@@ -1,9 +1,11 @@
 import flask
 from flask import Flask, render_template
-from db import create_table, add_todo, get_all_todos, complete_todo, delete_todo
 app = Flask(__name__)
 
-create_table()
+with open('database.json', 'r') as f:
+    import json
+    database = json.load(f)
+
 
 @app.route('/')
 def home():
