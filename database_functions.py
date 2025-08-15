@@ -1,3 +1,9 @@
+def delete_todo_user(username, todo_id, data):
+    """Deletes a todo for the given user."""
+    if username not in data or todo_id >= len(data[username]['todos']):
+        return False, data  # User does not exist or todo_id is invalid
+    del data[username]['todos'][todo_id]
+    return True, data
 def make_new_user(username,password,data):
     """
     Creates a new user with the given username and password.
